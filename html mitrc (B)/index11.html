@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="one" value="">
+    <button onclick="fun()">click</button>
+    <div>
+        <h1>Locations</h1>
+        <div id="location">
+        </div>
+    </div>
+    <script>
+        //this is also pincode code api
+        "http://www.postalpincode.in/api/pincode/333029"
+        let fun = async()=>{
+            let value = document.getElementById("one").value;
+            ///api integrate
+            const api = await fetch("https://api.zippopotam.us/IN/"+value)
+            const apiResponse = await api.json();
+            const {places} = apiResponse;
+            //console.log(apiResponse["places"]);
+
+            for(let i=0;i<apiResponse["places"].length;i++){
+                document.getElementById("location").innerHTML +=`
+                <p>${places[i]["place name"]}</p>`
+            }
+
+            //console.log(value)
+        }
+    </script>
+</body>
+</html>

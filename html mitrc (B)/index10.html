@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="one">
+
+        </div>
+        <script>
+        let fun = async ()=>{
+            const api = await fetch("https://fakestoreapi.com/products")
+            const apiResponse = await api.json();
+            console.log(apiResponse);
+
+            for(let i=0;i<apiResponse.length;i++){
+                document.getElementById("one").innerHTML +=
+                `<img src=${apiResponse[i]["image"]} alt="" width="100px">
+                <p>${apiResponse[i]["title"]}</p>
+                <p>${apiResponse[i]["price"]}</p>
+                <p>${apiResponse[i]["category"]}</p>`
+            }
+        }
+    fun();
+
+        
+    </script>
+    </body>
+</html>

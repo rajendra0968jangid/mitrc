@@ -1,0 +1,39 @@
+div{
+font-size: 50px;
+font-style: italic;
+font-weight: bold;
+background-color: orange;
+text-align: center;
+/* border start */
+border: 2px solid red;
+border-radius: 2px 10px  5px;
+/* border end */
+
+/* padding start */
+padding: 10px 5px;
+/* padding end */
+
+/* margin start */
+margin: 2px 3px 4px 5px;
+/* margin end */
+
+/* outline start */
+outline: 4px double green;
+outline-offset: 5px;
+/* outline end */
+
+
+/* shadow start */
+box-shadow: 100px 100px orange;
+text-shadow: 2px 5px green;
+/* shadow end */
+
+
+
+
+
+
+
+
+
+}
