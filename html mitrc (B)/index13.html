@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="name"></h1>
+    email:<input type="text" name="" id="one"><br>
+    password:<input type="text" name="" id="two"><br>
+    <button onclick="fun()">click</button>
+    <button onclick="logout()">logout</button>
+    <script>
+        let fun = async()=>{
+            let email = document.getElementById("one").value
+            let password = document.getElementById("two").value
+            let obj = {
+                "email":email,
+                "password":password
+            }
+            let api = await fetch("https://0a8f-2409-4085-2e13-e87-9994-c546-99e6-1f57.ngrok-free.app/authenticate"
+            ,{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(obj)
+            })
+            let apiJson = await api.json();
+            console.log(apiJson);
+            localStorage.setItem("user",JSON.stringify(apiJson))
+        }
+        let data = JSON.parse(localStorage.getItem("user"))
+        document.getElementById("name").innerText = data["firstName"]
+
+        let logout = ()=>{
+            localStorage.removeItem("user");
+        }
+        //fun();
+    </script>
+</body>
+</html>

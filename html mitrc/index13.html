@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    firstName
+    <input type="text" name="" id="one"><br>
+    lastName
+    <input type="text" name="" id="two"><br>
+    email
+    <input type="text" name="" id="three"><br>
+    password
+    <input type="text" name="" id="four"><br>
+    confirmPassword
+    <input type="text" name="" id="five"><br>
+    accept
+    <input type="text" name="" id="six"><br>
+    <button onclick="fun()">click</button>
+
+    <script>
+        let fun = async()=>{
+            let firstName = document.getElementById("one").value;
+            let lastName = document.getElementById("two").value;
+            let email = document.getElementById("three").value;
+            let password = document.getElementById("four").value;
+            let confirmPassword = document.getElementById("five").value;
+            let acceptTerms = document.getElementById("six").value;
+            //api integrate
+            let obj = {
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email,
+                "password": password,
+                "confirmPassword": confirmPassword,
+                "acceptTerms":acceptTerms
+              }
+              console.log(obj)
+
+              //post api integrate
+              let api  = await fetch("https://b4a7-2409-4085-2e13-e87-9994-c546-99e6-1f57.ngrok-free.app/register",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(obj)
+              })
+              let apiJson = await api.json();
+              console.log(apiJson);
+        }
+    </script>
+
+</body>
+</html>

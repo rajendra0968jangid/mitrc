@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>subjects</th>
+                <!-- <th>message</th> -->
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody id="one">
+        </tbody>
+    </table>
+    <script>
+        let getDelete   = async(id)=>{
+            console.log("delete",id)
+        }
+        let getdata = async ()=>{
+            //put api
+            let api = await fetch("https://bcb5-2409-4085-2d9b-bad4-d358-53da-1db3-b43d.ngrok-free.app/contact",{
+                method:"put"
+            })
+            let apijson  = await api.json();
+            for(let i=0;i<apijson.length;i++){
+                document.getElementById('one').innerHTML += `<tr>
+                    <td>${apijson[i]["id"]}</td>
+                    <td>${apijson[i]["name"]}</td>
+                    <td>${apijson[i]["email"]}</td>
+                    <td>${apijson[i]["subject"]}</td>
+                    <!-- <td>${apijson[i]["message"]}</td> -->
+                    <td><button onclick="getDelete(${apijson[i]["id"]})">delete</button></td>
+                </tr>`
+                }
+        }
+        getdata();
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="one">
+    </div>
+    <script>
+        let fun =async ()=>{
+            let api = await fetch("https://api-v1.com/w/sV3.php?key=TOS")
+            let apiJson = await api.json();
+            console.log(apiJson);
+            document.getElementById("one").innerHTML=`<p>${apiJson["j"]}</p>`
+        }
+        fun();
+    </script>
+</body>
+</html>

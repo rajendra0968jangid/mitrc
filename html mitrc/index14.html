@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <label for>name:</label>
+        <input type="text" name id="one"><br>
+        <label for>email:</label>
+        <input type="text" name id="two"><br>
+        <label for>subject:</label>
+        <input type="text" name id="three"><br>
+        <label for>message:</label>
+        <input type="text" name id="four"><br>
+        <button onclick="fun()">submit</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>subject</th>
+                    <th>message</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody id="six">
+
+            </tbody>
+        </table>
+        <script>
+            let getData = async()=>{
+let api = await fetch("https://bcb5-2409-4085-2d9b-bad4-d358-53da-1db3-b43d.ngrok-free.app/contact",{
+    method:"put"
+})
+let apijson = await api.json();
+for(let i=0;i<apijson.length;i++){
+    document.getElementById("six").innerHTML += `<td>${apijson[i]["id"]}</td>
+                <td>${apijson[i]["name"]} </td>
+                <td>${apijson[i]["email"]}</td>
+                <td>subjects </td>
+                <td>message </td>
+                <td><button>delete</button> </td>`
+}
+            }
+            getData();
+        let fun =async()=>{
+            let name = document.getElementById("one").value
+            let email = document.getElementById("two").value
+            let subject = document.getElementById("three").value
+            let message = document.getElementById("four").value
+            console.log("function",name,email,subject,message)
+            let obj = {
+                name:name,
+                email:email,
+                subject:subject,
+                message:message
+            }
+            //api add method post
+            let api = await fetch("https://bcb5-2409-4085-2d9b-bad4-d358-53da-1db3-b43d.ngrok-free.app/contact",{
+                method:"post",
+                headers:{
+                    "content-type":"application/json"
+                },
+                body:JSON.stringify(obj)
+            })
+            let apijson = await api.json();
+            console.log(apijson);
+        }
+    </script>
+    </body>
+</html>
